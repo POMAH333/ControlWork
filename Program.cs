@@ -53,12 +53,15 @@ void TaskStr(bool autoArray = false)
 
     if (autoArray)
     {
-        
+
     }
     else
     {
-        
+
     }
+
+    Console.WriteLine("Нажмите любую клавишу для продолжения");
+    Console.ReadKey();
 }
 
 
