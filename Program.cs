@@ -49,17 +49,18 @@ int SetNumber(string messageEnt)
 
 void TaskStr(bool autoArray = false)
 {
-    Console.WriteLine();
+    int num = SetNumber("Введите количество элементов массива:");
 
     if (autoArray)
     {
-
+        int[] array = AutoArrayComplet(num);
     }
     else
     {
-
+        int[] array = ManualArrayComplet(num);
     }
 
+    Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
     Console.WriteLine("Нажмите любую клавишу для продолжения");
     Console.ReadKey();
 }
