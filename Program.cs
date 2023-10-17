@@ -14,8 +14,6 @@
 
 //-----------------------------------------------------------------------------------
 
-using System.Diagnostics.Contracts;
-
 while (true)
 {
     Console.Clear();
