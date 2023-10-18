@@ -38,29 +38,31 @@ while (true)
 
 //-----------------------------------------------------------------------------------
 
+void TaskStr(bool autoArray = false)
+{
+    int num = SetNumber("Введите количество элементов массива:");
+
+    if (autoArray)
+    {
+        string[] array = AutoArrayComplet(num);
+    }
+    else
+    {
+        string[] array = ManualArrayComplet(num);
+    }
+
+    //Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
+    Console.WriteLine("Нажмите любую клавишу для продолжения");
+    Console.ReadKey();
+}
+
+
+
 int SetNumber(string messageEnt)
 {
     Console.WriteLine(messageEnt);
     int num = int.Parse(Console.ReadLine());
     return num;
-}
-
-
-
-string[] AutoArrayComplet(int size)
-{
-    string[] array = new string[size];
-
-    Random random = new Random();
-    int rndMax = 0;
-    string temp = StrArray(0, out rndMax);
-
-    for (int i = 0; i < size; i++)
-    {
-        array[i] = StrArray(random.Next(0, rndMax), out rndMax);
-    }
-
-    return array;
 }
 
 
@@ -79,22 +81,20 @@ string[] ManualArrayComplet(int size)
 }
 
 
-void TaskStr(bool autoArray = false)
+string[] AutoArrayComplet(int size)
 {
-    int num = SetNumber("Введите количество элементов массива:");
+    string[] array = new string[size];
 
-    if (autoArray)
+    Random random = new Random();
+    int rndMax = 0;
+    array[0] = StrArray(0, out rndMax);
+
+    for (int i = 0; i < size; i++)
     {
-        string[] array = AutoArrayComplet(num);
-    }
-    else
-    {
-        string[] array = ManualArrayComplet(num);
+        array[i] = StrArray(random.Next(0, rndMax), out rndMax);
     }
 
-    //Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
-    Console.WriteLine("Нажмите любую клавишу для продолжения");
-    Console.ReadKey();
+    return array;
 }
 
 
