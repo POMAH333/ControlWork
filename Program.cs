@@ -23,9 +23,6 @@ while (true)
     Console.WriteLine();
     Console.WriteLine("0) Или введите 0 для выхода из программы");
     int menuNum = SetNumber("");
-    Console.WriteLine();
-    Console.WriteLine();
-    Console.WriteLine();
 
     switch (menuNum)
     {
@@ -42,6 +39,7 @@ void TaskStr(bool autoArray = false)
 {
     int num = SetNumber("Введите количество элементов массива:");
     int strLen = 3;
+    string arrNullQuot = "\""; //Переменная для добавления кавычек при выводе массива
 
     string[] arrayStart = new string[num];
 
@@ -54,11 +52,23 @@ void TaskStr(bool autoArray = false)
         arrayStart = ManualArrayComplet(num);
     }
 
-    Console.WriteLine($"Начальный массив: [{string.Join(", ", arrayStart)}]");
+    if (arrayStart.Length == 0) arrNullQuot = ""; //Если массив нулевой, убрать кавычки
+    Console.WriteLine($"Начальный массив: [{arrNullQuot}{string.Join("\", \"", arrayStart)}{arrNullQuot}]");
+    Console.WriteLine();
 
     string[] arrayResult = StrMinLenArray(arrayStart, strLen);
 
-    Console.WriteLine($"Итоговый массив: [{string.Join(", ", arrayResult)}]");
+    if (arrayResult.Length == 0) //Если массив нулевой, убрать кавычки, если нет, то установить
+    {
+        arrNullQuot = "";
+    }
+    else
+    {
+        arrNullQuot = "\"";
+    }
+    Console.WriteLine($"Итоговый массив: [{arrNullQuot}{string.Join("\", \"", arrayResult)}{arrNullQuot}]");
+    Console.WriteLine();
+    Console.WriteLine();
 
     Console.WriteLine("Нажмите любую клавишу для продолжения");
     Console.ReadKey();
