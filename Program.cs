@@ -41,17 +41,25 @@ while (true)
 void TaskStr(bool autoArray = false)
 {
     int num = SetNumber("Введите количество элементов массива:");
+    int strLen = 3;
+
+    string[] arrayStart = new string[num];
 
     if (autoArray)
     {
-        string[] array = AutoArrayComplet(num);
+        arrayStart = AutoArrayComplet(num);
     }
     else
     {
-        string[] array = ManualArrayComplet(num);
+        arrayStart = ManualArrayComplet(num);
     }
 
-    //Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
+    Console.WriteLine($"Начальный массив: [{string.Join(", ", arrayStart)}]");
+
+    string[] arrayResult = StrMinLenArray(arrayStart, strLen);
+
+    Console.WriteLine($"Итоговый массив: [{string.Join(", ", arrayResult)}]");
+
     Console.WriteLine("Нажмите любую клавишу для продолжения");
     Console.ReadKey();
 }
@@ -95,6 +103,33 @@ string[] AutoArrayComplet(int size)
     }
 
     return array;
+}
+
+
+
+string[] StrMinLenArray(string[] array, int strMaxLen)
+{
+    int resultLen = 0;
+    int[] arrayTemp = new int[array.Length];
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= strMaxLen)
+        {
+            arrayTemp[resultLen] = i;
+            resultLen++;
+        }
+    }
+
+    string[] result = new string[resultLen];
+
+    for (int i = 0; i < resultLen; i++)
+    {
+        result[i] = array[arrayTemp[i]];
+    }
+
+    return result;
+
 }
 
 
